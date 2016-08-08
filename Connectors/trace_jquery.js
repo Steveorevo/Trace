@@ -3,6 +3,9 @@
 	Virtuosoft (c)2016
   Stephen J Carnam
 */
-function trace(m) {
-  $.ajax({ url: "http://127.0.0.1:8189/trace?m=" + escape(m)});
-}
+var trace;
+(function($) {
+    trace = function(m) {
+        $.ajax({ url: "http://127.0.0.1:8189/trace?m=" + escape(m)});
+    }
+})(jQuery);
