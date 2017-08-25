@@ -229,7 +229,7 @@ Begin Window winTrace
       Mode            =   0
       Period          =   1000
       Scope           =   0
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
    End
 End
 #tag EndWindow
@@ -427,6 +427,7 @@ End
 		      sText = sText + winTrace.sTStamp(n) + " " + winTrace.sMessage(n) + Chr(13)
 		    End If
 		  Next n
+		  sText = sText.DefineEncoding(Encodings.UTF8)
 		  txtLog.Text = sText
 		  
 		  // Implement scroll to bottom behavior

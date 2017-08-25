@@ -14,7 +14,7 @@ Inherits TCPSocket
 		  
 		  // Get the incoming request from the client
 		  Static sData As String
-		  sData = sData + Me.ReadAll(Encodings.ASCII)
+		  sData = sData + Me.ReadAll(Encodings.UTF8)
 		  
 		  // Strip out unecessary CR from Windows systems
 		  sData = ReplaceAll(sData, Chr(13), "")
