@@ -96,10 +96,43 @@ Begin Window winTrace
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   48
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   False
          Visible         =   True
          Width           =   574
+      End
+      Begin PushButton btnClear
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Clear"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "Canvas1"
+         Italic          =   False
+         Left            =   507
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   16
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   80
       End
    End
    Begin TextField txtFilter
@@ -139,6 +172,7 @@ Begin Window winTrace
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   14
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -166,6 +200,7 @@ Begin Window winTrace
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Filter:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -177,50 +212,6 @@ Begin Window winTrace
       Underline       =   False
       Visible         =   True
       Width           =   44
-   End
-   Begin BevelButton btnClear
-      AcceptFocus     =   False
-      AutoDeactivate  =   True
-      BackColor       =   &c00000000
-      Bevel           =   0
-      Bold            =   False
-      ButtonType      =   0
-      Caption         =   "Clear"
-      CaptionAlign    =   3
-      CaptionDelta    =   0
-      CaptionPlacement=   1
-      Enabled         =   True
-      HasBackColor    =   False
-      HasMenu         =   0
-      Height          =   22
-      HelpTag         =   ""
-      Icon            =   0
-      IconAlign       =   0
-      IconDX          =   0
-      IconDY          =   0
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   512
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      MenuValue       =   0
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   14
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   75
    End
    Begin Timer tmrUpdate
       Index           =   -2147483648
@@ -358,6 +349,17 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events btnClear
+	#tag Event
+		Sub Action()
+		  // Clear the display
+		  ReDim winTrace.sMessage(-1)
+		  ReDim winTrace.sTStamp(-1)
+		  txtLog.Text = ""
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events txtFilter
 	#tag Event
 		Sub KeyUp(Key As String)
@@ -391,17 +393,6 @@ End
 		Sub TextChange()
 		  tmrUpdate.Mode = Timer.ModeSingle
 		  tmrUpdate.Reset
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events btnClear
-	#tag Event
-		Sub Action()
-		  // Clear the display
-		  ReDim winTrace.sMessage(-1)
-		  ReDim winTrace.sTStamp(-1)
-		  txtLog.Text = ""
-		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
